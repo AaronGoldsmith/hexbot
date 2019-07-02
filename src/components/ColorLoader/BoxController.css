@@ -1,0 +1,37 @@
+.inputContainer {
+  display: inline-flex;
+  width: 100%;
+  max-height: 10%;
+  margin-bottom: 12px;
+}
+
+.boxWrap {
+  border-radius: 4px;
+  overflow: scroll;
+  position: static;
+  max-height: 98%;
+}
+.boxWrap::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  background: 0 0;
+  width: 4px;
+}
+.colorGrid {
+  width: 80%;
+  height: 38vh;
+  background: white;
+  margin: 40px auto;
+  border-radius: 4px;
+  display: grid;
+  padding: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  transition: 2s height ease-out;
+}
+.colorGrid:not(.open) {
+  height: 35vh;
+}
+.colorGrid.open {
+  overflow: hidden;
+  transition: 2s height ease-in-out;
+  height: 74vh;
+}
