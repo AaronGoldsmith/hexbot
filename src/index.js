@@ -6,20 +6,26 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import WordLoader from "./components/WordLoader/WordLoader.js";
 import ColorController from "./components/ColorLoader/ColorController";
+import { ColorList } from "./components/ColorLoader/ColorList";
 import "./styles.css";
 
 function App() {
   const [wordList, setWords] = useState(0);
+  const [colors, setColors] = useState([]);
   const handleVal = useCallback(e => {
-    // console.log(e)
     setWords(e);
+  }, []);
+
+  const handleColor = useCallback(e => {
+    setColors(e);
   }, []);
 
   return (
     <div className="App">
-      <div />
-      <ColorController words={wordList} />
+      <ColorController words={wordList} updateColors={handleColor} />
       <WordLoader updateWords={handleVal} />
+
+      {colors && <ColorList colorsPicked={colors} />}
     </div>
   );
 }

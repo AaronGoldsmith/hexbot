@@ -3,7 +3,8 @@ import "./Input.css";
 // uncontrolled input component
 function Input(props) {
   return (
-    <div className="textInput" id={props.id}>
+    <form className="textInput" autoComplete="off" id={props.id}>
+      <input autoComplete="false" className="hide" name="hidden" type="text" />
       <input
         type="text"
         name={props.name}
@@ -11,7 +12,7 @@ function Input(props) {
         onKeyPress={props.checkEnter}
         placeholder={props.text}
       />
-    </div>
+    </form>
   );
 }
 export default Input;

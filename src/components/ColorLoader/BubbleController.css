@@ -10,6 +10,7 @@
   overflow: scroll;
   position: static;
   max-height: 98%;
+  padding: 10px 10%;
 }
 .boxWrap::-webkit-scrollbar-thumb {
   -webkit-appearance: none;
@@ -25,13 +26,13 @@
   display: grid;
   padding: 18px;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  transition: 2s height ease-out;
+  transition: 1.1s height ease-out;
 }
 .colorGrid:not(.open) {
   height: 35vh;
 }
 .colorGrid.open {
   overflow: hidden;
-  transition: 2s height ease-in-out;
+  transition: 1s height ease-in-out;
   height: 74vh;
 }

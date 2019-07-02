@@ -1,7 +1,7 @@
 import React from "react";
-import "./BoxColor.css";
+import "./BubbleColor.css";
 
-const BoxColor = props => {
+const BubbleColor = props => {
   const { size } = props;
   return (
     <div
@@ -11,4 +11,4 @@ const BoxColor = props => {
     />
   );
 };
-export default BoxColor;
+export default BubbleColor;

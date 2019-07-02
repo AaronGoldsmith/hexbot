@@ -1,0 +1,30 @@
+.dragItem {
+  list-style-type: none;
+  user-select: none;
+  display: inline-grid;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+}
+
+.dragItem:hover:not(:focus) {
+  border-radius: 2px;
+  transition: 200ms all ease-in;
+  /* border-bottom: 1px solid rgba(0, 0, 0.09); */
+  background: rgba(0, 0, 0, 0.16);
+}
+.dragArea {
+  cursor: move;
+  background: rgba(0, 0, 0, 0.15);
+
+  width: 100%;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+  padding: 12px 0px;
+  padding-inline-start: 0px;
+}
+
+.draggable {
+  color: rgba(0, 0, 0, 0.85);
+  margin: 0;
+}

@@ -3,15 +3,15 @@ import { connect } from "react-redux";
 
 import { API, API_BASE } from "../../config/";
 import { getColors } from "../../actionCreators";
-import BoxColor from "./BoxColor";
+import BubbleColor from "./BubbleColor";
 import PlusMinus from "../Icons/PlusMinus";
 import Input from "../Input";
-import "./BoxController.css";
+import "./BubbleController.css";
 
 const defaultColor = "#FFFFFF";
 const options = {
   API: "hexbot",
-  count: 1
+  count: 12
 };
 // seed: ["00004F", "0FFFFF", "3B0284"]
 
@@ -20,17 +20,26 @@ class ColorController extends React.Component {
     super(props);
     this.state = {
       colorList: [],
+      colorsPicked: [],
       color: defaultColor,
       brainFrt: "",
-      inputs: {},
       open: false
     };
+
     this.clickHandler = e => {
       const color = e.currentTarget.style.backgroundColor;
+      const colorsPicked = this.state.colorsPicked
+        ? this.state.colorsPicked.indexOf(color) === -1
+          ? [...this.state.colorsPicked, color]
+          : this.state.colorsPicked
+        : [color];
       e.shiftKey
-        ? this.setState({ color, open: true })
-        : this.setState({ color: defaultColor, open: false });
+        ? this.setState({ color, colorsPicked })
+        : this.setState({ color: defaultColor, colorsPicked });
+
+      props.updateColors(colorsPicked);
     };
+
     this.handleInput = e => {
       const val = e.currentTarget.value;
       const name = e.currentTarget.name;
@@ -72,20 +81,14 @@ class ColorController extends React.Component {
   }
 
   render() {
-    const { colorList, color, brainFrt, open } = this.state;
+    const { colorList, color, open } = this.state;
     const openClss = open ? "open" : "";
     return (
       <div className={`colorGrid ${openClss}`} style={{ background: color }}>
         <div className="inputContainer">
           <Input
             name="countColors"
-            text="how many?"
-            updateVal={this.handleInput}
-          />
-          <Input
-            id="2"
-            name="question"
-            text={`what ${brainFrt}?`}
+            text="how many circles?"
             updateVal={this.handleInput}
           />
         </div>
@@ -93,7 +96,7 @@ class ColorController extends React.Component {
           {colorList.map((color, i) => {
             const { value } = color;
             return (
-              <BoxColor
+              <BubbleColor
                 key={i}
                 handleClick={this.clickHandler}
                 background={value}
@@ -103,6 +106,7 @@ class ColorController extends React.Component {
           })}
         </div>
         <PlusMinus
+          expanded={open}
           handleClick={() => {
             this.setState({ open: !open });
           }}
